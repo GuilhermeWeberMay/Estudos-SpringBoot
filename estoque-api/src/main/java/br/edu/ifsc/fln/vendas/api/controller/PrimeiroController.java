@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PrimeiroController {
-	
-	@GetMapping("/mensagem")
-	public String mensagem() {
-		return " <p> Olá mundo! Resposta feita pela minha primeira API </p>";
-	}
+    @GetMapping("/mensagem")
+    public String mensagem() {
+        return "Olá mundo! Minha primeira requisição com API REST";
+    }
+
+
 }
