@@ -9,6 +9,6 @@ public class PrimeiroController {
     // Todos os recursos da API são criados a partir de métodos
     @GetMapping("/mensagem")
     public String mensagem() {
-        return "Olá mundo! Esta é minha primeira resposta com API REST.";
+        return "Olá mundo! Esta é minha primeira resposta com uma API REST.";
     }
 }
