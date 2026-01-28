@@ -12,7 +12,7 @@
 	<artifactId>estoque-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>estoque-api</name>
-	<description>Meu projeto para aprendizado de SpringBoot</description>
+	<description>Meu primeiro projeto Spring para estudos</description>
 	<url/>
 	<licenses>
 		<license/>

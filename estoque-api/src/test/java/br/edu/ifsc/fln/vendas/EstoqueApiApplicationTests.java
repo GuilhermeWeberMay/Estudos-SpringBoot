@@ -1,4 +1,4 @@
-package br.edu.ifsc.fln.vendas.estoque_api;
+package br.edu.ifsc.fln.vendas;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
