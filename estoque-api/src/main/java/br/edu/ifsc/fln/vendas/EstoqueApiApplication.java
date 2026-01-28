@@ -1,4 +1,4 @@
-package br.edu.ifsc.fln.vendas.estoque_api;
+package br.edu.ifsc.fln.vendas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
