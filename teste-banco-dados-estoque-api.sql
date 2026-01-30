@@ -18,3 +18,6 @@ alter table categoria drop column unidade_medida;
 
 /* V4__alter_categoria_to_Categoria*/
 alter table categoria rename to Categoria;
+
+/* V5__insert_categoria */
+insert into categoria (descricao) values ('Vestuário'), ('Calçados'), ('Acessórios');
