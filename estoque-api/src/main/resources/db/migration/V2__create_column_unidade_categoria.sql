@@ -1,0 +1,1 @@
+alter table Categoria add column unidade_medida varchar(20);
