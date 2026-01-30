@@ -15,3 +15,6 @@ alter table categoria add column unidade_medida varchar(20);
 
 /* V3__drop_column_unidade_categoria.sql*/
 alter table categoria drop column unidade_medida;
+
+/* V4__alter_categoria_to_Categoria*/
+alter table categoria rename to Categoria;

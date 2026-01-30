@@ -1,0 +1,1 @@
+alter table categoria rename to Categoria;

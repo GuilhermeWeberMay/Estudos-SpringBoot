@@ -1,15 +1,28 @@
 package br.edu.ifsc.fln.vendas.model.domain;
 
-public class Categoria {
-    private int id;
-    private String descricao;
+import java.util.Objects;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
-    public Categoria() {
-    }
+@Entity
+public class Categoria {
+
+    @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    private int id;
+    @Column(nullable = false)
+    private String descricao;
 
     public Categoria(int id, String descricao) {
         this.id = id;
         this.descricao = descricao;
+    }
+
+    public Categoria() {
+
     }
 
     public void setId(int id) {
@@ -26,5 +39,21 @@ public class Categoria {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return true;
+        if(obj == null)
+            return false;
+        if(getClass() != obj.getClass())
+            return false;
+        Categoria other = (Categoria) obj;
+        return id == other.id;
     }
 }
