@@ -20,7 +20,8 @@ public class CategoriaController {
     @GetMapping("/Categoria")
     public List<Categoria> listar() {
         TypedQuery<Categoria> pesquisa =
-                entityManager.createQuery("from Categoria", Categoria.class);
+                entityManager.createQuery("from Categoria where id=2", Categoria.class);
+        // Colocar a consulta SQL dentro das ""
         return pesquisa.getResultList(); // Irá retornar um JSON para o navegador
     }
 }
