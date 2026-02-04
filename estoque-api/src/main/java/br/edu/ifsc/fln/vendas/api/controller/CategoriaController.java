@@ -7,10 +7,14 @@ import jakarta.persistence.TypedQuery;
 import br.edu.ifsc.fln.vendas.model.domain.Categoria;
 import br.edu.ifsc.fln.vendas.repository.CategoriaRepository;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,8 +28,8 @@ public class CategoriaController {
         this.categoriaRepository = categoriaRepository;
     }
 
-    @PersistenceContext
-    private EntityManager entityManager;
+//    @PersistenceContext
+//    private EntityManager entityManager;
 
     @GetMapping("/Categoria")
     public List<Categoria> listar() {
@@ -45,9 +49,15 @@ public class CategoriaController {
     @GetMapping("/Categoria/descricao/{descricao}")
     public ResponseEntity<List<Categoria>> pesquisar(@PathVariable String descricao) {
         List<Categoria> categorias = categoriaRepository.findByDescricao(descricao);
-        if(categorias.size()>0){
+        if (categorias.size() > 0) {
             return ResponseEntity.ok(categorias);
         }
         return ResponseEntity.notFound().build();
     }
-}
+        @PostMapping("/Categoria")
+        @ResponseStatus(HttpStatus.CREATED)
+        public Categoria inserir(@RequestBody Categoria categoria){
+            return categoriaRepository.save(categoria);
+        }
+    }
+

@@ -12,11 +12,11 @@ public class Categoria {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(nullable = false)
     private String descricao;
 
-    public Categoria(int id, String descricao) {
+    public Categoria(Integer id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
@@ -25,7 +25,7 @@ public class Categoria {
 
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -37,7 +37,7 @@ public class Categoria {
         this.descricao = descricao;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
