@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,11 +32,13 @@ public class CategoriaController {
 //    @PersistenceContext
 //    private EntityManager entityManager;
 
+    // SELECT
     @GetMapping("/Categoria")
     public List<Categoria> listar() {
         return categoriaRepository.findAll(); // Irá retornar um JSON para o navegador
     }
 
+    // SELECT COM WHERE
     @GetMapping("/Categoria/{id}")
     public ResponseEntity<Categoria> pesquisar(@PathVariable Integer id) {
         Optional<Categoria> categoria = categoriaRepository.findById(id);
@@ -46,6 +49,7 @@ public class CategoriaController {
 //        return categoria.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    // SELECT COM WHERE
     @GetMapping("/Categoria/descricao/{descricao}")
     public ResponseEntity<List<Categoria>> pesquisar(@PathVariable String descricao) {
         List<Categoria> categorias = categoriaRepository.findByDescricao(descricao);
@@ -54,10 +58,25 @@ public class CategoriaController {
         }
         return ResponseEntity.notFound().build();
     }
-        @PostMapping("/Categoria")
-        @ResponseStatus(HttpStatus.CREATED)
-        public Categoria inserir(@RequestBody Categoria categoria){
-            return categoriaRepository.save(categoria);
+
+    // INSERT
+    @PostMapping("/Categoria")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Categoria inserir(@RequestBody Categoria categoria) {
+        return categoriaRepository.save(categoria);
+    }
+
+    // UPDATE
+    @PutMapping("/Categoria/{id}")
+    public ResponseEntity<Categoria> atualizar(@PathVariable Integer id, @RequestBody Categoria categoria) {
+        if (!categoriaRepository.existsById(id)) {
+            // Conferi se o objeto existe na base de dados
+            return ResponseEntity.notFound().build();
+        } else{
+            categoria.setId(id);
+            Categoria entidadeAtualizada = categoriaRepository.save(categoria);
+            return ResponseEntity.ok(entidadeAtualizada);
         }
     }
+}
 
