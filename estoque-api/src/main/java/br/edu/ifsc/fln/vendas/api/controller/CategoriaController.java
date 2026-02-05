@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -78,5 +79,19 @@ public class CategoriaController {
             return ResponseEntity.ok(entidadeAtualizada);
         }
     }
+
+    // DELETE
+    @DeleteMapping("/Categoria/{id}")
+    public ResponseEntity<Void> remover(@PathVariable Integer id) {
+        if (!categoriaRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }else{
+            categoriaRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+            // noContent - devolve código 204 - sucesso, mas sem conteúdo
+        }
+
+    }
+
 }
 
