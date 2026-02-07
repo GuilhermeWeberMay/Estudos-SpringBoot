@@ -13,16 +13,16 @@ create table categoria
 /* V2__create_column_unidade_categoria.sql*/
 alter table categoria add column unidade_medida varchar(20);
 
-/* V3__drop_column_unidade_categoria.sql*/
+/* V3__drop_column_unidade_categoria.sql */
 alter table categoria drop column unidade_medida;
 
-/* V4__alter_categoria_to_Categoria*/
+/* V4__alter_categoria_to_Categoria.sql */
 alter table categoria rename to Categoria;
 
-/* V5__insert_categoria */
+/* V5__insert_categoria.sql */
 insert into categoria (descricao) values ('Vestuário'), ('Calçados'), ('Acessórios');
 
-/* V6__create_table_produto*/
+/* V6__create_table_produto.sql */
 create table produto(
 	id int not null auto_increment,
     nome varchar(50) not null,
@@ -33,3 +33,14 @@ create table produto(
 );
 
 alter table produto add constraint fk_produto_categoria foreign key (id_categoria) references categoria (id);
+
+/* V7__insert_produto.sql */
+insert into produto (nome, descricao, preco, id_categoria) 
+	values ('Calça', 'Calça Jeans', '250.00', '1'),
+			('Tênis', 'Tennis runner', '450.00', '2'),
+			 ('Camisa', 'Camisa Polo', '180.00', '1'),
+		      ('Pulseira', 'Pulseira de Prata', '220.00', '3');
+
+	
+
+

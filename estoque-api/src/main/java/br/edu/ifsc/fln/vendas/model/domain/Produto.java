@@ -6,6 +6,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 import java.util.Objects;
 
@@ -17,12 +18,15 @@ public class Produto {
     @Id // Declara que será a chave primaria
     @GeneratedValue (strategy = GenerationType.IDENTITY) // Auto Increment
     private Integer id;
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String descricao;
+    @Column(nullable = false)
     private BigDecimal preco;
 
     @ManyToOne
-    @JoinColumn(name = "id_categoria")
+    @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
 
     public Integer getId() {
