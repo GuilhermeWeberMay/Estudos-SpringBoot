@@ -48,4 +48,20 @@ public class ProdutoController {
         produto.setCategoria(c.get());
         return produto;
     }
+
+    @PutMapping("/Produto/{id}")
+    public ResponseEntity<Produto> atualizar(@PathVariable Integer id, @RequestBody Produto produto) {
+
+        if(!produtoRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }else {
+            produto.setId(id);
+            Produto entidadeAtualizada = produtoRepository.save(produto);
+
+            Optional<Categoria> c = categoriaRepository.findById(produto.getCategoria().getId());
+            entidadeAtualizada.setCategoria(c.get());
+
+            return ResponseEntity.ok(entidadeAtualizada);
+        }
+    }
 }
