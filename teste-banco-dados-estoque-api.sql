@@ -40,7 +40,20 @@ insert into produto (nome, descricao, preco, id_categoria)
 			('Tênis', 'Tennis runner', '450.00', '2'),
 			 ('Camisa', 'Camisa Polo', '180.00', '1'),
 		      ('Pulseira', 'Pulseira de Prata', '220.00', '3');
+              
+/* V8__create_table_fornecedor.sql */
+create table fornecedor(
+	id int not null auto_increment,
+    nome varchar(50) not null,
+    email varchar(100) not null,
+    fone varchar(20) not null,
+    primary key(id)
+);
 
-	
+alter table produto add column id_fornecedor int not null;
 
+set foreign_key_checks = 0;
 
+alter table produto add constraint fk_produto_fornecedor foreign key(id_fornecedor) references fornecedor(id);
+    
+set foreign_key_checks = 1;
