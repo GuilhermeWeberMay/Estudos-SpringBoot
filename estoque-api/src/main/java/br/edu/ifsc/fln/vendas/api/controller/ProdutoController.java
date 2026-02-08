@@ -64,4 +64,14 @@ public class ProdutoController {
             return ResponseEntity.ok(entidadeAtualizada);
         }
     }
+
+    @DeleteMapping("/Produto/{id}")
+    public ResponseEntity<Void> remover(@PathVariable Integer id){
+        if(!produtoRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }else {
+            produtoRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+    }
 }
