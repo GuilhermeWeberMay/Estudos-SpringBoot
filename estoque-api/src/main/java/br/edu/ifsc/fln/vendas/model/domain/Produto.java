@@ -1,5 +1,6 @@
 package br.edu.ifsc.fln.vendas.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -28,6 +29,11 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "id_fornecedor", nullable = false)
+    @JsonIgnoreProperties("produtos")
+    private Fornecedor fornecedor;
 
     public Integer getId() {
         return id;
@@ -67,6 +73,14 @@ public class Produto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
     @Override

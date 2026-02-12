@@ -57,3 +57,16 @@ set foreign_key_checks = 0;
 alter table produto add constraint fk_produto_fornecedor foreign key(id_fornecedor) references fornecedor(id);
     
 set foreign_key_checks = 1;
+
+/* V9__insert_fornecedor.sql */
+insert into fornecedor (nome, email, fone)
+	values ('Vest Brasil', 'contato@vestbrasil.com.br', '54932322323'),
+			('Calçados do Sul', 'contato@calcadosdosul.com.br', '51930303131'),
+             ('Só Acessórios', 'contato@soacessorios.com.br', '31932245456');
+             
+/* V10__update_produto.sql */
+update produto set id_fornecedor = 1 where id = 1;
+update produto set id_fornecedor = 2 where id = 2;
+update produto set id_fornecedor = 1 where id = 3;
+update produto set id_fornecedor = 3 where id = 4;
+update produto set id_fornecedor = 2 where id = 5;
