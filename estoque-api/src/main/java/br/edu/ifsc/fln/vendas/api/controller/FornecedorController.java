@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import br.edu.ifsc.fln.vendas.repository.FornecedorRepository;
 import br.edu.ifsc.fln.vendas.model.domain.Fornecedor;
@@ -55,4 +56,15 @@ public class FornecedorController {
             return ResponseEntity.ok(entidadeAtualizada);
         }
     }
+
+    @DeleteMapping("/Fornecedor/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Integer id){
+        if(!fornecedorRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }else{
+            fornecedorRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+    }
+    
 }
