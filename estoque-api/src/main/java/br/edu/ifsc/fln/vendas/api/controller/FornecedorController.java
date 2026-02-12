@@ -2,7 +2,9 @@ package br.edu.ifsc.fln.vendas.api.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifsc.fln.vendas.repository.FornecedorRepository;
@@ -20,5 +22,11 @@ public class FornecedorController {
     @GetMapping("/Fornecedor")
     public List<Fornecedor> listar() {
         return fornecedorRepository.findAll();
+    }
+
+    @GetMapping("/Fornecedor/{id}")
+    public ResponseEntity<Fornecedor> pesquisar(@PathVariable Integer id) {
+        return fornecedorRepository.findById(id)
+                .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }
