@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import br.edu.ifsc.fln.vendas.repository.FornecedorRepository;
 import br.edu.ifsc.fln.vendas.model.domain.Fornecedor;
@@ -40,5 +41,18 @@ public class FornecedorController {
     public Fornecedor inserir(@RequestBody Fornecedor fornecedor) {
         fornecedor = fornecedorRepository.save(fornecedor);
         return fornecedor;
+    }
+
+    @PutMapping("/Fornecedor/{id}")
+    public ResponseEntity<Fornecedor> atualizar(@PathVariable Integer id, @RequestBody Fornecedor fornecedor) {
+        if (!fornecedorRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        } else  {
+            fornecedor.setId(id);
+
+            Fornecedor entidadeAtualizada = fornecedorRepository.save(fornecedor);
+
+            return ResponseEntity.ok(entidadeAtualizada);
+        }
     }
 }
