@@ -3,7 +3,9 @@ package br.edu.ifsc.fln.vendas.api.controller;
 import java.util.List;
 import java.util.Optional;
 
+import br.edu.ifsc.fln.vendas.model.domain.Fornecedor;
 import br.edu.ifsc.fln.vendas.repository.CategoriaRepository;
+import br.edu.ifsc.fln.vendas.repository.FornecedorRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +27,12 @@ public class ProdutoController {
 
     private CategoriaRepository categoriaRepository;
 
-    public ProdutoController(ProdutoRepository produtoRepository, CategoriaRepository categoriaRepository) {
+    private FornecedorRepository fornecedorRepository;
+
+    public ProdutoController(ProdutoRepository produtoRepository, CategoriaRepository categoriaRepository, FornecedorRepository fornecedorRepository) {
         this.produtoRepository = produtoRepository;
         this.categoriaRepository = categoriaRepository;
+        this.fornecedorRepository = fornecedorRepository;
     }
 
     @GetMapping("/Produto")
@@ -46,6 +51,8 @@ public class ProdutoController {
         produto =  produtoRepository.save(produto); // Localiza a categoria
         Optional<Categoria> c = categoriaRepository.findById(produto.getCategoria().getId());
         produto.setCategoria(c.get());
+        Optional<Fornecedor> f = fornecedorRepository.findById(produto.getFornecedor().getId());
+        produto.setFornecedor(f.get());
         return produto;
     }
 
@@ -60,6 +67,9 @@ public class ProdutoController {
 
             Optional<Categoria> c = categoriaRepository.findById(produto.getCategoria().getId());
             entidadeAtualizada.setCategoria(c.get());
+
+            Optional<Fornecedor> f = fornecedorRepository.findById(entidadeAtualizada.getFornecedor().getId());
+            entidadeAtualizada.setFornecedor(f.get());
 
             return ResponseEntity.ok(entidadeAtualizada);
         }
