@@ -1,13 +1,7 @@
 package br.edu.ifsc.fln.vendas.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -34,6 +28,19 @@ public class Produto {
     @JoinColumn(name = "id_fornecedor", nullable = false)
     @JsonIgnoreProperties("produtos")
     private Fornecedor fornecedor;
+
+    // Faz o mapeamento do delete on cascade onde se um produto é excluido seu estoque tambem é excluido
+    @OneToOne(mappedBy = "produto", cascade = CascadeType.ALL,  orphanRemoval = true, fetch = FetchType.LAZY)
+    private Estoque estoque;
+
+    public Produto() {
+        this.estoque = new Estoque();
+        this.estoque.setProduto(this);
+    }
+
+    public Estoque getEstoque() {
+        return estoque;
+    }
 
     public Integer getId() {
         return id;
