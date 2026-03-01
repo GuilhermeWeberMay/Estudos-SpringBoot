@@ -1,5 +1,6 @@
 package br.edu.ifsc.fln.table_per_class.model.domain;
 
+import jakarta.persistence.Entity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
+@Entity
 public class Proprietario extends Usuario {
     private String cnpj;
 }
