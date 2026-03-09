@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class FuncionarioController {
 
@@ -31,6 +33,16 @@ public class FuncionarioController {
             return ResponseEntity.noContent().build();
             // noContent - devolve código 204 - sucesso, mas sem conteúdo
         }
+    }
+
+    @GetMapping("/getFuncionario")
+    public List<Funcionario> getFuncionario() {
+        return funcionarioRepository.findAll();
+    }
+
+    @GetMapping("/Funcionario/{id}")
+    public ResponseEntity<Funcionario> pesquisar(@PathVariable Integer id) {
+        return funcionarioRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
 }
