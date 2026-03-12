@@ -27,5 +27,8 @@ public class Local {
     @JoinColumn(name = "id")
     private Jogador jogador;
 
-
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
+    private Proprietario proprietario;
 }
