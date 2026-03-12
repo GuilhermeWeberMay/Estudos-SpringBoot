@@ -1,4 +1,4 @@
-package br.edu.ifsc.fln.table_per_class;
+package br.edu.ifsc.fln.table_per_class.controller;
 
 import br.edu.ifsc.fln.table_per_class.model.domain.Funcionario;
 import br.edu.ifsc.fln.table_per_class.repository.FuncionarioRepository;

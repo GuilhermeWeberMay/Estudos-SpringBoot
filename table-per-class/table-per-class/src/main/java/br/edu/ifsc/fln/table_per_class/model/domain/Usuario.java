@@ -14,14 +14,19 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(unique = true, nullable = false)
     private int id;
+
     @Column(nullable = false)
     private String nome;
-    @Column(nullable = false)
+
+    @Column(nullable = false, unique = true)
     private String email;
+
     @Column(nullable = false)
     private String senha;
+
     @Column(nullable = false)
     private String telefone;
 }

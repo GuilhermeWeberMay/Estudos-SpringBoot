@@ -16,7 +16,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 public class Funcionario extends Usuario{
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, columnDefinition = "char(11)")
     private String cpf;
     @Column(nullable = false)
     private String sobrenome;
