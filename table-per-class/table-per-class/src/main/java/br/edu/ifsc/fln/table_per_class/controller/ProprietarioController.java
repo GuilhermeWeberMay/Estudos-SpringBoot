@@ -21,11 +21,7 @@ public class ProprietarioController {
 
     @PostMapping("/createProprietario")
     @ResponseStatus(HttpStatus.CREATED)
-    public Proprietario inserir(@RequestBody Proprietario funcionario) {
-        if (funcionario.getLocal() != null) {
-            funcionario.getLocal().setProprietario(funcionario);
-        }
-
-        return proprietarioRepository.save(funcionario);
+    public Proprietario inserir(@RequestBody Proprietario proprietario) {
+        return proprietarioRepository.save(proprietario);
     }
 }

@@ -10,25 +10,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-@Entity
+@Embeddable
 public class Local {
-    @Id
-    @Column(name = "id")
-    private int id;
     @Column(nullable = false)
     private String bairro;
     @Column(nullable = false)
     private String estado;
     @Column(nullable = false)
     private String cidade;
-
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Jogador jogador;
-
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Proprietario proprietario;
 }

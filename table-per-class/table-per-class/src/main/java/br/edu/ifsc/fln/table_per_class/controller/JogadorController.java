@@ -24,10 +24,6 @@ public class JogadorController {
     @PostMapping("/createJogador")
     @ResponseStatus(HttpStatus.CREATED)
     public Jogador inserir(@RequestBody Jogador jogador) {
-        if (jogador.getLocal() != null) {
-            jogador.getLocal().setProprietario(jogador);
-        }
-
         return jogadorRepository.save(jogador);
     }
 

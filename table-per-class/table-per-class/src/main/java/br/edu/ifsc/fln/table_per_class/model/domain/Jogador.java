@@ -23,14 +23,6 @@ public class Jogador extends Usuario {
     private String cpf;
 
     //Composição com Local
-    @JsonIgnoreProperties("jogador")
-    @OneToOne(mappedBy = "jogador", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @Embedded
     private Local local;
-
-    public void setLocal(Local local) {
-        this.local = local;
-        if (local != null) {
-            local.setJogador(this); // Vínculo bidirecional obrigatório
-        }
-    }
 }
