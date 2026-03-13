@@ -23,16 +23,12 @@ public class JogadorController {
 
     @PostMapping("/createJogador")
     @ResponseStatus(HttpStatus.CREATED)
-    public Jogador inserir(@RequestBody Jogador funcionario) {
-        // Instancie os objetos
-        Jogador jogador = new Jogador();
-        Local local = new Local();
+    public Jogador inserir(@RequestBody Jogador jogador) {
+        if (jogador.getLocal() != null) {
+            jogador.getLocal().setProprietario(jogador);
+        }
 
-        // Faça a associação (dos dois lados, se for bidirecional)
-        local.setJogador(jogador);
-        jogador.setLocal(local);
-
-        return jogadorRepository.save(funcionario);
+        return jogadorRepository.save(jogador);
     }
 
     @GetMapping("/Jogador/{id}")
