@@ -1,8 +1,5 @@
 package br.edu.ifsc.fln.table_per_class.model.domain;
 
-import br.edu.ifsc.fln.table_per_class.model.domain.Local;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
